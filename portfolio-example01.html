@@ -1,0 +1,121 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A portfolio template that uses Material Design Lite.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>MDL-Static Website</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-pink.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+            <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    <span class="mdl-layout__title">Simple portfolio website</span>
+                </span>
+            </div>
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                    <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
+                    
+                    <a class="mdl-navigation__link" href="about.html">About Us</a>
+                   
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
+               
+                <a class="mdl-navigation__link" href="about.html">About Us</a>
+                
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="mdl-grid portfolio-max-width">
+                <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+                    This data set includes the tweets which were twitted in response to Hurricane Harvey.
+					The code used to fetch the data is as follows:
+					<pre>#Import the necessary methods from tweepy library
+from tweepy.streaming import StreamListener
+from tweepy import OAuthHandler
+from tweepy import Stream
+import json
+from datetime import datetime
+
+start_date = datetime.strptime('Thu Apr 23 13:38:19 +0000 2009','%a %b %d %H:%M:%S %z %Y');
+
+#Variables that contains the user credentials to access Twitter API 
+access_token = "878761035146166273-HH61KPJxOxmAA7si0TzFLUacjyijRKV"
+access_token_secret = "31gRX98IYbv8cfwel5g7XMg568V93rqaAo9Gc7Ejxn9ve"
+consumer_key = "3ECLDh539wjcQjDFkZO1cxh6i"
+consumer_secret = "tFiDXUNBmZcpd16q3WXHv4hRbqxI08EASUVHJpK8Asx1rne5p1"
+
+#This is a listener that just prints received tweets to stdout where tweet date is greate than Aug 16 2017.
+class StdOutListener(StreamListener):
+
+    def on_data(self, data):
+        d=json.loads(data)
+        tweet_date = datetime.strptime(d['created_at'],'%a %b %d %H:%M:%S %z %Y');
+        if start_date.strftime('%Y-%m-%d') < tweet_date.strftime('%Y-%m-%d'):
+            print (data)
+            return True
+
+    def on_error(self, status):
+        print (status)
+
+
+if __name__ == '__main__':
+
+   #This handles Twitter authetification and the connection to Twitter Streaming API
+    l = StdOutListener()
+    auth = OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    stream = Stream(auth, l)
+
+    #This line filter Twitter Streams to capture data by the keywords: 'Harvey'
+    stream.filter(track=['#Harvey','#prayforTexas','#HurricaneHarvey'],async=True)</pre>
+					<a href="https://firebasestorage.googleapis.com/v0/b/portfolio-90fba.appspot.com/o/output.json?alt=media&token=f44467be-f4ba-42af-ba5e-bebc99d650dd" download > Download here </a>
+                </div>
+            </div>
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">Simple portfolio website</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Privacy & Terms</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</body>
+
+</html>
