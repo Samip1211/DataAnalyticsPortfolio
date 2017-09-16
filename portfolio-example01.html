@@ -60,6 +60,7 @@
                 <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
                     This data set includes the tweets which were twitted in response to Hurricane Harvey.
 					The code used to fetch the data is as follows:
+					<a href="https://firebasestorage.googleapis.com/v0/b/portfolio-90fba.appspot.com/o/output.json?alt=media&token=f44467be-f4ba-42af-ba5e-bebc99d650dd" download > Download the data set here </a>
 					<pre>#Import the necessary methods from tweepy library
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
@@ -99,7 +100,7 @@ if __name__ == '__main__':
 
     #This line filter Twitter Streams to capture data by the keywords: 'Harvey'
     stream.filter(track=['#Harvey','#prayforTexas','#HurricaneHarvey'],async=True)</pre>
-					<a href="https://firebasestorage.googleapis.com/v0/b/portfolio-90fba.appspot.com/o/output.json?alt=media&token=f44467be-f4ba-42af-ba5e-bebc99d650dd" download > Download here </a>
+					
                 </div>
             </div>
             <footer class="mdl-mini-footer">
